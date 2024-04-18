@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sunshine-shivers", "sunshine-shivers.csproj", "{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A8B02C9-7AF7-4EE9-9BA1-8F02D3DCF907}
+	EndGlobalSection
+EndGlobal
