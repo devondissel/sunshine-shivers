@@ -10,6 +10,7 @@ namespace sunshine_shivers
         private GraphicsDeviceManager _graphics;
         private SpriteBatch spriteBatch;
 
+        private bool keyEscPressed = false;
 
         // load texture
         Texture2D playerSprite;
@@ -18,11 +19,14 @@ namespace sunshine_shivers
         Texture2D tileStone;
         Texture2D tileDirt;
 
-        public static int tileSize = 64;
+        public static int tileSize = 36;
         public static int verticalShift = 400;
         public static int horizontalShift = 250;
         Player player = new Player();
         Dimension dimension = new Dimension();
+
+
+        private bool menu_open = false;
 
         public Game1()
         {
@@ -66,10 +70,25 @@ namespace sunshine_shivers
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                //Exit();
+                
 
-            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                if (keyEscPressed == false) {
+                    if (menu_open == false) {
+                        menu_open = true;
+                    } else {
+                        menu_open = false;
+                    }
+                }
+                keyEscPressed = true;
+            }
+            if (Keyboard.GetState().IsKeyUp(Keys.Escape) && keyEscPressed == true)
+            {
+                keyEscPressed = false;
+            }
 
 
             // KEYPRESSES
@@ -84,37 +103,41 @@ namespace sunshine_shivers
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
             // draw sprite
-
-            spriteBatch.Begin();
-
-            // draw world
-            for (int i = 0; i < 20; i++) 
-            {
-                for (int j = 0; j < 20; j++)
+            if (menu_open == false) {
+                spriteBatch.Begin();
+                // draw world
+                for (int i = 0; i < 40; i++) 
                 {
-                    Rectangle tileLocation = new Rectangle(tileSize * (i - player.positionX) + verticalShift, tileSize * (j - player.positionY) + horizontalShift, tileSize, tileSize);
-                    switch (dimension.world[i, j])
+                    for (int j = 0; j < 40; j++)
                     {
-                        case 0:
-                            spriteBatch.Draw(tileSand, tileLocation, Color.White);
-                            break;
-                        case 1:
-                            spriteBatch.Draw(tileGrass, tileLocation, Color.White);
-                            break;
-                        case 2:
-                            spriteBatch.Draw(tileDirt, tileLocation, Color.White);
-                            break;
-                        case 3:
-                            spriteBatch.Draw(tileStone, tileLocation, Color.White);
-                            break;
+                        Rectangle tileLocation = new Rectangle(tileSize * (i - player.positionX) + verticalShift, tileSize * (j - player.positionY) + horizontalShift, tileSize, tileSize);
+                        switch (dimension.world[i, j])
+                        {
+                            case 0:
+                                spriteBatch.Draw(tileSand, tileLocation, Color.White);
+                                break;
+                            case 1:
+                                spriteBatch.Draw(tileGrass, tileLocation, Color.White);
+                                break;
+                            case 2:
+                                spriteBatch.Draw(tileDirt, tileLocation, Color.White);
+                                break;
+                            case 3:
+                                spriteBatch.Draw(tileStone, tileLocation, Color.White);
+                                break;
+                        }
                     }
                 }
+                Rectangle playerPosition = new Rectangle(verticalShift, horizontalShift, tileSize, tileSize);
+                spriteBatch.Draw(playerSprite, playerPosition, Color.White);
+                spriteBatch.End();
+            } else {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                // draw menu
             }
-            Rectangle playerPosition = new Rectangle(verticalShift, horizontalShift, tileSize, tileSize);
-            spriteBatch.Draw(playerSprite, playerPosition, Color.White);
-            spriteBatch.End();
+
+            
 
             base.Draw(gameTime);
         }

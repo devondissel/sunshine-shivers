@@ -9,14 +9,14 @@ namespace sunshine_shivers
 {
     public class Dimension
     {
-        public int[,] world = new int[20, 20];
+        public int[,] world = new int[40, 40];
 
         public void generateWorld() {
             // random ground
             Random rnd = new Random();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 40; i++)
             {
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < 40; j++)
                 {
                     int tile = rnd.Next(2);
                     world[i, j] = tile;
@@ -28,16 +28,17 @@ namespace sunshine_shivers
                     world[i, j] = 3;
                 }
             }
+            world[8,11] = 2;
             // make world border
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 40; i++)
             {
                 world[i,0] = 3;
-                world[i,19] = 3;
+                world[i,39] = 3;
             }
-            for (int j = 0; j < 20; j++)
+            for (int j = 0; j < 40; j++)
             {
                 world[0,j] = 3;
-                world[19,j] = 3;
+                world[39,j] = 3;
             }
         }
     }
