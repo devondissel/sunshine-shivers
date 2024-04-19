@@ -27,6 +27,9 @@ namespace sunshine_shivers
         public static int tileSize = screenWidth >> 4;
         public static int verticalShift = (screenWidth - tileSize) >> 1;
         public static int horizontalShift = (screenHeight - tileSize) >> 1;
+        
+
+        public int gameplayTime = 0;
 
         Player player = new Player();
         Dimension dimension = new Dimension();
@@ -96,8 +99,14 @@ namespace sunshine_shivers
         {
       
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
+            
+            // game clock
+            if (menu_open == false) gameplayTime++;
+            Console.WriteLine(gameplayTime);
+
+
+            //keyboard
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape)) {
                 if (keyEscPressed == false) {
                     if (menu_open == false) {
                         menu_open = true;
@@ -108,13 +117,7 @@ namespace sunshine_shivers
                 }
                 keyEscPressed = true;
             }
-            if (Keyboard.GetState().IsKeyUp(Keys.Escape) && keyEscPressed == true)
-            {
-                keyEscPressed = false;
-            }
-
-
-            // KEYPRESSES
+            if (Keyboard.GetState().IsKeyUp(Keys.Escape) && keyEscPressed == true) keyEscPressed = false;
             player.updatePosition(dimension.world);
             
 
@@ -128,28 +131,25 @@ namespace sunshine_shivers
             spriteBatch.Begin();
             if (menu_open == false) {
                 // draw world
-                for (int i = 0; i < 40; i++) 
-                {
-                    for (int j = 0; j < 40; j++)
+                for (int i = 0; i < 40; i++) for (int j = 0; j < 40; j++) {
+                    Rectangle tileLocation = new Rectangle(tileSize * (i - player.positionX) + verticalShift, tileSize * (j - player.positionY) + horizontalShift, tileSize, tileSize);
+                    switch (dimension.world[i, j])
                     {
-                        Rectangle tileLocation = new Rectangle(tileSize * (i - player.positionX) + verticalShift, tileSize * (j - player.positionY) + horizontalShift, tileSize, tileSize);
-                        switch (dimension.world[i, j])
-                        {
-                            case 0:
-                                spriteBatch.Draw(tileSand, tileLocation, Color.White);
-                                break;
-                            case 1:
-                                spriteBatch.Draw(tileGrass, tileLocation, Color.White);
-                                break;
-                            case 2:
-                                spriteBatch.Draw(tileDirt, tileLocation, Color.White);
-                                break;
-                            case 3:
-                                spriteBatch.Draw(tileStone, tileLocation, Color.White);
-                                break;
-                        }
+                        case 0:
+                            spriteBatch.Draw(tileSand, tileLocation, Color.White);
+                            break;
+                        case 1:
+                            spriteBatch.Draw(tileGrass, tileLocation, Color.White);
+                            break;
+                        case 2:
+                            spriteBatch.Draw(tileDirt, tileLocation, Color.White);
+                            break;
+                        case 3:
+                            spriteBatch.Draw(tileStone, tileLocation, Color.White);
+                            break;
                     }
                 }
+                
                 Rectangle playerPosition = new Rectangle(verticalShift, horizontalShift, tileSize, tileSize);
                 spriteBatch.Draw(playerSprite, playerPosition, Color.White);
             } else {
@@ -208,11 +208,8 @@ namespace sunshine_shivers
                 {
                     keyEnterPressed = false;
                 }
-
-
             }
 
-            
 
             spriteBatch.End();
             base.Draw(gameTime);
