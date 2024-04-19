@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|c:\\users\\devon\\documents\\.git\\sunset-shivers\\sunshine-shivers\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|solutionrelative:game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|c:\\users\\devon\\documents\\.git\\sunset-shivers\\sunshine-shivers\\src\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|solutionrelative:src\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|c:\\users\\devon\\documents\\.git\\sunset-shivers\\sunshine-shivers\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|c:\\users\\devon\\documents\\.git\\sunset-shivers\\sunshine-shivers\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|c:\\users\\devon\\documents\\.git\\sunset-shivers\\sunshine-shivers\\src\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB7163D0-E767-4170-B4DE-FE052B7E3D2A}|sunshine-shivers.csproj|solutionrelative:src\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "player.cs",
-              "DocumentMoniker": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\player.cs",
-              "RelativeDocumentMoniker": "player.cs",
-              "ToolTip": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\player.cs",
-              "RelativeToolTip": "player.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABgAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T20:07:10.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T18:25:24.68Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\Game1.cs",
-              "RelativeDocumentMoniker": "Game1.cs",
-              "ToolTip": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\Game1.cs",
-              "RelativeToolTip": "Game1.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAIwGEAAAB7AAAA",
+              "DocumentMoniker": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\src\\Game1.cs",
+              "RelativeDocumentMoniker": "src\\Game1.cs",
+              "ToolTip": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\src\\Game1.cs",
+              "RelativeToolTip": "src\\Game1.cs",
+              "ViewState": "AQIAAH0AAAAAAAAAAAAIwIoAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T18:23:58.883Z",
+              "WhenOpened": "2024-04-19T13:25:57.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "player.cs",
+              "DocumentMoniker": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\src\\player.cs",
+              "RelativeDocumentMoniker": "src\\player.cs",
+              "ToolTip": "C:\\Users\\Devon\\Documents\\.git\\sunset-shivers\\sunshine-shivers\\src\\player.cs",
+              "RelativeToolTip": "src\\player.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAQwCkAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T13:25:56.249Z",
               "EditorCaption": ""
             }
           ]

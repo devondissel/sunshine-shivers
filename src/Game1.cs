@@ -13,7 +13,15 @@ namespace sunshine_shivers
         private SpriteBatch spriteBatch;
 
         // load texture
-        Texture2D playerSprite;
+        Texture2D playerSprite0;
+        Texture2D playerSprite1;
+        Texture2D playerSprite2;
+        Texture2D playerSprite3;
+        Texture2D playerSprite4;
+        Texture2D playerSprite5;
+        Texture2D playerSprite6;
+        Texture2D playerSprite7;
+
         Texture2D tileGrass;
         Texture2D tileSand;
         Texture2D tileStone;
@@ -29,7 +37,6 @@ namespace sunshine_shivers
         public static int horizontalShift = (screenHeight - tileSize) >> 1;
         
 
-        public int gameplayTime = 0;
 
         Player player = new Player();
         Dimension dimension = new Dimension();
@@ -60,23 +67,23 @@ namespace sunshine_shivers
 
 
             // load texture
-            playerSprite = Texture2D.FromFile(GraphicsDevice, "assets/textures/player.png");
+            playerSprite0 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/south.png");
+            playerSprite1 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/southwest.png");
+            playerSprite2 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/west.png");
+            playerSprite3 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/northwest.png");
+            playerSprite4 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/north.png");
+            playerSprite5 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/northeast.png");
+            playerSprite6 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/east.png");
+            playerSprite7 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/southeast.png");
 
-            tileSand = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/sand.png");
-            tileStone = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/stone.png");
-            tileGrass = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/grass.png");
-            tileDirt = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/dirt.png");
+            tileSand = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/sand.png");
+            tileStone = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/stone.png");
+            tileGrass = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/grass.png");
+            tileDirt = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/dirt.png");
 
-            textSave = Texture2D.FromFile(GraphicsDevice, "assets/textures/text/save.png");
-            textBack = Texture2D.FromFile(GraphicsDevice, "assets/textures/text/back_to_game.png");
-            textQuit = Texture2D.FromFile(GraphicsDevice, "assets/textures/text/quit.png");
-
-
-            // playerSprite = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player.png");
-            // tileSand = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/sand.png");
-            // tileStone = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/stone.png");
-            // tileGrass = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/grass.png");
-            // tileDirt = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/dirt.png");
+            textSave = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/text/save.png");
+            textBack = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/text/back_to_game.png");
+            textQuit = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/text/quit.png");
 
             // initialize world
             dimension.generateWorld();
@@ -99,11 +106,6 @@ namespace sunshine_shivers
         {
       
 
-            
-            // game clock
-            if (menu_open == false) gameplayTime++;
-            Console.WriteLine(gameplayTime);
-
 
             //keyboard
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) {
@@ -119,8 +121,6 @@ namespace sunshine_shivers
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Escape) && keyEscPressed == true) keyEscPressed = false;
             player.updatePosition(dimension.world);
-            
-
             base.Update(gameTime);
         }
 
@@ -132,7 +132,9 @@ namespace sunshine_shivers
             if (menu_open == false) {
                 // draw world
                 for (int i = 0; i < 40; i++) for (int j = 0; j < 40; j++) {
-                    Rectangle tileLocation = new Rectangle(tileSize * (i - player.positionX) + verticalShift, tileSize * (j - player.positionY) + horizontalShift, tileSize, tileSize);
+                        int x = (int)Math.Floor((tileSize * (i - player.positionX)));
+                        int y = (int)Math.Floor((tileSize * -(j - player.positionY)));
+                    Rectangle tileLocation = new Rectangle(x + verticalShift, y + horizontalShift, tileSize, tileSize);
                     switch (dimension.world[i, j])
                     {
                         case 0:
@@ -150,8 +152,25 @@ namespace sunshine_shivers
                     }
                 }
                 
+
+                // draw player
                 Rectangle playerPosition = new Rectangle(verticalShift, horizontalShift, tileSize, tileSize);
-                spriteBatch.Draw(playerSprite, playerPosition, Color.White);
+                switch (player.facing)
+                {
+                    case 0: spriteBatch.Draw(playerSprite0, playerPosition, Color.White); break;
+                    case 1: spriteBatch.Draw(playerSprite1, playerPosition, Color.White); break;
+                    case 2: spriteBatch.Draw(playerSprite2, playerPosition, Color.White); break;
+                    case 3: spriteBatch.Draw(playerSprite3, playerPosition, Color.White); break;
+                    case 4: spriteBatch.Draw(playerSprite4, playerPosition, Color.White); break;
+                    case 5: spriteBatch.Draw(playerSprite5, playerPosition, Color.White); break;
+                    case 6: spriteBatch.Draw(playerSprite6, playerPosition, Color.White); break;
+                    case 7: spriteBatch.Draw(playerSprite7, playerPosition, Color.White); break;
+                    default: break;
+                }
+                
+
+
+
             } else {
                 GraphicsDevice.Clear(Color.DarkSlateGray);
                 Rectangle menuText1 = new Rectangle(verticalShift - 200, horizontalShift - 100, 400, 50);
