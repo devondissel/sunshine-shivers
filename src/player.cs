@@ -60,11 +60,6 @@ namespace sunshine_shivers
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 int tileId = world[positionX, positionY + 1];
-                Console.Write("x = ");
-                Console.WriteLine(positionX);
-                Console.Write("y = ");
-                Console.WriteLine(positionY);
-                Console.WriteLine("tileid = " + tileId);
                 if (keyDownPressed == false && walkableTiles.Contains(tileId)) positionY += 1;
                 keyDownPressed = true;
             }
