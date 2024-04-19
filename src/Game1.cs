@@ -18,10 +18,11 @@ namespace sunshine_shivers
         Texture2D tileStone;
         Texture2D tileDirt;
 
-        public static int tileSize = 32;
+        public static int tileSize = 64;
+        public static int verticalShift = 400;
+        public static int horizontalShift = 250;
         Player player = new Player();
-
-        int[,] world = new int[20, 20];
+        Dimension dimension = new Dimension();
 
         public Game1()
         {
@@ -33,27 +34,25 @@ namespace sunshine_shivers
         protected override void Initialize()
         {
             // load texture
-            playerSprite = Texture2D.FromFile(GraphicsDevice, "../../../assets/player.png");
-            tileSand = Texture2D.FromFile(GraphicsDevice, "../../../assets/tiles/sand.png");
-            tileStone = Texture2D.FromFile(GraphicsDevice, "../../../assets/tiles/stone.png");
-            tileGrass = Texture2D.FromFile(GraphicsDevice, "../../../assets/tiles/grass.png");
-            tileDirt = Texture2D.FromFile(GraphicsDevice, "../../../assets/tiles/dirt.png");
+            playerSprite = Texture2D.FromFile(GraphicsDevice, "assets/textures/player.png");
+            tileSand = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/sand.png");
+            tileStone = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/stone.png");
+            tileGrass = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/grass.png");
+            tileDirt = Texture2D.FromFile(GraphicsDevice, "assets/textures/tiles/dirt.png");
+
+
+            // playerSprite = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player.png");
+            // tileSand = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/sand.png");
+            // tileStone = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/stone.png");
+            // tileGrass = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/grass.png");
+            // tileDirt = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/dirt.png");
 
             // initialize world
-            Random rnd = new Random();
-
-            for (int i = 0; i < 20; i++)
-            {
-                for (int j = 0; j < 20; j++)
-                {
-                    int tile = rnd.Next(4);
-                    world[i, j] = tile;
-                }
-            }
+            dimension.generateWorld();
 
             // start position player
-            player.positionX = 192;
-            player.positionY = 192;
+            player.positionX = 3;
+            player.positionY = 3;
 
             base.Initialize();
         }
@@ -74,7 +73,7 @@ namespace sunshine_shivers
 
 
             // KEYPRESSES
-            player.updatePosition();
+            player.updatePosition(dimension.world);
             
 
             base.Update(gameTime);
@@ -95,17 +94,17 @@ namespace sunshine_shivers
             {
                 for (int j = 0; j < 20; j++)
                 {
-                    Rectangle tileLocation = new Rectangle(i * tileSize - player.positionX, j * tileSize - player.positionY, tileSize, tileSize);
-                    switch (world[i, j])
+                    Rectangle tileLocation = new Rectangle(tileSize * (i - player.positionX) + verticalShift, tileSize * (j - player.positionY) + horizontalShift, tileSize, tileSize);
+                    switch (dimension.world[i, j])
                     {
                         case 0:
                             spriteBatch.Draw(tileSand, tileLocation, Color.White);
                             break;
                         case 1:
-                            spriteBatch.Draw(tileDirt, tileLocation, Color.White);
+                            spriteBatch.Draw(tileGrass, tileLocation, Color.White);
                             break;
                         case 2:
-                            spriteBatch.Draw(tileGrass, tileLocation, Color.White);
+                            spriteBatch.Draw(tileDirt, tileLocation, Color.White);
                             break;
                         case 3:
                             spriteBatch.Draw(tileStone, tileLocation, Color.White);
@@ -113,7 +112,7 @@ namespace sunshine_shivers
                     }
                 }
             }
-            Rectangle playerPosition = new Rectangle(192, 192, tileSize, tileSize);
+            Rectangle playerPosition = new Rectangle(verticalShift, horizontalShift, tileSize, tileSize);
             spriteBatch.Draw(playerSprite, playerPosition, Color.White);
             spriteBatch.End();
 

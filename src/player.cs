@@ -17,11 +17,14 @@ namespace sunshine_shivers
         public int positionX;
         public int positionY;
 
-        public void updatePosition()
+        public void updatePosition(int[,] world)
         {
+            int[] walkableTiles = { 0, 1};
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                if (keyLeftPressed == false) positionX -= Game1.tileSize;
+                int tileId = world[positionX - 1, positionY];
+                if (keyLeftPressed == false && walkableTiles.Contains(tileId)) positionX -= 1;
                 keyLeftPressed = true;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Left) && keyLeftPressed == true)
@@ -32,7 +35,8 @@ namespace sunshine_shivers
             // right
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                if (keyRightPressed == false) positionX += Game1.tileSize;
+                int tileId = world[positionX + 1, positionY];
+                if (keyRightPressed == false && walkableTiles.Contains(tileId)) positionX += 1;
                 keyRightPressed = true;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Right) && keyRightPressed == true)
@@ -43,7 +47,8 @@ namespace sunshine_shivers
             // up
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-                if (keyUpPressed == false) positionY -= Game1.tileSize;
+                int tileId = world[positionX, positionY - 1];
+                if (keyUpPressed == false && walkableTiles.Contains(tileId)) positionY -= 1;
                 keyUpPressed = true;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Up) && keyUpPressed == true)
@@ -54,7 +59,13 @@ namespace sunshine_shivers
             // down
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
-                if (keyDownPressed == false) positionY += Game1.tileSize;
+                int tileId = world[positionX, positionY + 1];
+                Console.Write("x = ");
+                Console.WriteLine(positionX);
+                Console.Write("y = ");
+                Console.WriteLine(positionY);
+                Console.WriteLine("tileid = " + tileId);
+                if (keyDownPressed == false && walkableTiles.Contains(tileId)) positionY += 1;
                 keyDownPressed = true;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Down) && keyDownPressed == true)
