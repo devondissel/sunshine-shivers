@@ -22,6 +22,8 @@ namespace sunshine_shivers
         Texture2D playerSprite6;
         Texture2D playerSprite7;
 
+        Texture2D sheepSprite;
+
         Texture2D tileGrass;
         Texture2D tileSand;
         Texture2D tileStone;
@@ -39,6 +41,7 @@ namespace sunshine_shivers
 
 
         Player player = new Player();
+        Sheep sheep = new Sheep();
         Dimension dimension = new Dimension();
 
 
@@ -76,6 +79,8 @@ namespace sunshine_shivers
             playerSprite6 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/east.png");
             playerSprite7 = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/player/southeast.png");
 
+            sheepSprite = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/animals/sheep.png");
+
             tileSand = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/sand.png");
             tileStone = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/stone.png");
             tileGrass = Texture2D.FromFile(GraphicsDevice, "../../../assets/textures/tiles/grass.png");
@@ -89,8 +94,11 @@ namespace sunshine_shivers
             dimension.generateWorld();
 
             // start position player
-            player.positionX = 3;
-            player.positionY = 3;
+            player.x = 3;
+            player.y = 3;
+
+            sheep.x = 4;
+            sheep.y = 4;
 
             base.Initialize();
         }
@@ -132,8 +140,8 @@ namespace sunshine_shivers
             if (menu_open == false) {
                 // draw world
                 for (int i = 0; i < 40; i++) for (int j = 0; j < 40; j++) {
-                        int x = (int)Math.Floor((tileSize * (i - player.positionX)));
-                        int y = (int)Math.Floor((tileSize * -(j - player.positionY)));
+                        int x = (int)Math.Floor((tileSize * (i - player.x)));
+                        int y = (int)Math.Floor((tileSize * -(j - player.y)));
                     Rectangle tileLocation = new Rectangle(x + verticalShift, y + horizontalShift, tileSize, tileSize);
                     switch (dimension.world[i, j])
                     {
@@ -151,7 +159,7 @@ namespace sunshine_shivers
                             break;
                     }
                 }
-                
+
 
                 // draw player
                 Rectangle playerPosition = new Rectangle(verticalShift, horizontalShift, tileSize, tileSize);
@@ -167,7 +175,13 @@ namespace sunshine_shivers
                     case 7: spriteBatch.Draw(playerSprite7, playerPosition, Color.White); break;
                     default: break;
                 }
-                
+
+
+                // draw animals
+                int sheep_x = (int)Math.Floor((tileSize * (sheep.x - player.x)));
+                int sheep_y = (int)Math.Floor((tileSize * -(sheep.y) - player.y));
+                Rectangle sheepPosition = new Rectangle(sheep_x, sheep_y, tileSize, tileSize);
+                spriteBatch.Draw(sheepSprite, sheepPosition, Color.White);
 
 
 

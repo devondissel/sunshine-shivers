@@ -20,8 +20,8 @@ namespace sunshine_shivers
         private double accelerationX;
         private double accelerationY;
 
-        public double positionX;
-        public double positionY;
+        public double x;
+        public double y;
 
         public int facing = 0;
 
@@ -31,15 +31,15 @@ namespace sunshine_shivers
             int[] walkableTiles = { 0, 1};
 
             // acceleration vector
-            int x = 0;
-            int y = 0;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) y++;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)) y--;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) x--;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) x++;
+            int i = 0;
+            int j = 0;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)) j++;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down)) j--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left)) i--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right)) i++;
 
-            Vector2 direction = new Vector2(x,y);
-            if (x != 0 || y != 0) direction = Vector2.Normalize(direction);
+            Vector2 direction = new Vector2(i,j);
+            if (i != 0 || j != 0) direction = Vector2.Normalize(direction);
             System.Diagnostics.Debug.WriteLine(direction.X);
             accelerationX += 0.018*direction.X;
             accelerationY += 0.018*direction.Y;
@@ -51,11 +51,11 @@ namespace sunshine_shivers
             if (direction.X == 0 && accelerationX*accelerationX < 0.0001) accelerationX = 0;
             if (direction.Y == 0 && accelerationY * accelerationY < 0.0001) accelerationY = 0;
 
-            positionX += accelerationX;
-            positionY += accelerationY;
+            x += accelerationX;
+            y += accelerationY;
 
             // calculate facing angle
-            if (x != 0 || y != 0) facing = (int)Math.Round(4 * (1 + Math.Atan2(accelerationX, accelerationY) / Math.PI));
+            if (i != 0 || j != 0) facing = (int)Math.Round(4 * (1 + Math.Atan2(accelerationX, accelerationY) / Math.PI));
             if (facing == 8) facing = 0;
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Left))
