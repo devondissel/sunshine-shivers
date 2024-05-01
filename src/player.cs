@@ -17,11 +17,11 @@ namespace sunshine_shivers
 
         //private double hitbox = 0.3;
 
-        private double accelerationX;
-        private double accelerationY;
+        private float accelerationX;
+        private float accelerationY;
 
-        public double x;
-        public double y;
+        public float x = 3;
+        public float y = 3;
 
         public int facing = 0;
 
@@ -41,11 +41,11 @@ namespace sunshine_shivers
             Vector2 direction = new Vector2(i,j);
             if (i != 0 || j != 0) direction = Vector2.Normalize(direction);
             System.Diagnostics.Debug.WriteLine(direction.X);
-            accelerationX += 0.018*direction.X;
-            accelerationY += 0.018*direction.Y;
+            accelerationX += 18/100*direction.X;
+            accelerationY += 18/100*direction.Y;
             // induce a friction
-            accelerationX *= 0.82;
-            accelerationY *= 0.82;
+            accelerationX *= 82/100;
+            accelerationY *= 82/100;
 
             // prevent drifting
             if (direction.X == 0 && accelerationX*accelerationX < 0.0001) accelerationX = 0;

@@ -7,11 +7,18 @@ using System.Threading.Tasks;
 
 namespace sunshine_shivers
 {
-    internal class Sheep
+    internal class Camera
     {
-        public int x;
-        public int y;
+        public float x;
+        public float y;
         //public string dimension;
     }
-    
+
+
+    // internal class DisplayCorner
+    // {
+    //     public float x;
+    //     public float y;
+    //     //public string dimension;
+    // }
 }
